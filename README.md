@@ -2,6 +2,8 @@
 
 A simple tool for drawing basic graphs in the terminal using X and Y data.
 
+https://www.npmjs.com/package/console-plot
+
 ## Installation
 
 ```bash
