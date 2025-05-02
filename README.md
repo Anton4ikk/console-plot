@@ -2,7 +2,9 @@
 
 A simple tool for drawing basic graphs in the terminal using X and Y data.
 
-https://www.npmjs.com/package/console-plot
+## Links
+
+[Github](https://www.npmjs.com/package/console-plot) | [Npm-package](https://github.com/Anton4ikk/console-plot)
 
 ## Installation
 
@@ -11,6 +13,8 @@ npm install console-plot
 ```
 
 ## Usage examples
+
+### 1. Default plot using X and Y data
 
 ```js
 import { plotGraph } from 'console-plot';
@@ -56,47 +60,40 @@ plotGraph({
         A B C D E F G H I J
 ```
 
+### 2. Optional parameters
+
 ```js
 import { plotGraph } from 'console-plot';
 
 plotGraph({
   yData: [1, 2, 3, 50, 51, 52, 53, 75, 99, 100],
   xData: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
+  maxHeight: 20,
   pointer: '@',
 });
 ```
 
 ```bash
 100.00                                                 @      @
- 96.59
- 93.17
- 89.76
- 86.34
- 82.93
- 79.52
- 76.10                                          @
- 72.69
- 69.28
- 65.86
- 62.45
- 59.03
- 55.62
- 52.21                            @   @    @
- 48.79                      @
- 45.38
- 41.97
- 38.55
- 35.14
- 31.72
- 28.31
- 24.90
- 21.48
- 18.07
- 14.66
- 11.24
-  7.83
-  4.41                @
-  1.00  @      @
+ 94.79
+ 89.58
+ 84.37
+ 79.16
+ 73.95                                          @
+ 68.74
+ 63.53
+ 58.32
+ 53.11                            @   @    @
+ 47.89                      @
+ 42.68
+ 37.47
+ 32.26
+ 27.05
+ 21.84
+ 16.63
+ 11.42
+  6.21
+  1.00  @      @      @
 
         Ja..ry Fe..ry March April May June July August Se..er Oc..er
 ```
