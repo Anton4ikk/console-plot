@@ -1,0 +1,17 @@
+{
+  "name": "console-plot",
+  "version": "1.0.0",
+  "description": "Dwaw graph based on X/Y data in console",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "console-plot": "./index.js"
+  },
+  "scripts": {
+    "test:plot": "node test/plotGraph.test.js",
+    "test:validation": "node test/inputValidation.test.js"
+  },
+  "keywords": ["console", "plot", "graph", "visualization", "terminal", "chart"],
+  "author": "Anton Bazhenov",
+  "license": "MIT"
+}
