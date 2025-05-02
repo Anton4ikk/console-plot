@@ -36,5 +36,6 @@ console.log('\n=== Test 5: Different labels sizes ===\n');
 plotGraph({
   yData: [1, 2, 3, 50, 51, 52, 53, 75, 99, 100],
   xData: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
+  maxHeight: 20,
   pointer: '@',
 });
