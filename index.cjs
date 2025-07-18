@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { inputValidator } from './inputValidator.js';
+const { inputValidator } = require('./inputValidator.cjs');
 
 /**
  * Draws a graph in the console based on input data
@@ -11,7 +11,7 @@ import { inputValidator } from './inputValidator.js';
  * @param {Number} params.maxWidth - maximum width of the graph
  * @param {String} params.pointer - symbol to represent the data points
  */
-export function plotGraph({
+function plotGraph({
     yData,
     xData,
     maxHeight = 30,
@@ -64,3 +64,5 @@ export function plotGraph({
     console.log('');
     console.log(labelLine);
 }
+
+module.exports = { plotGraph };

@@ -7,7 +7,7 @@
  * @param {Number} params.maxWidth - maximum width of the graph
  * @param {String} params.pointer - symbol to represent the data points
  */
-export function inputValidator({ yData, xData, maxHeight, maxWidth, pointer }) {
+function inputValidator({ yData, xData, maxHeight, maxWidth, pointer }) {
 
     if (!Array.isArray(xData)) {
         throw new Error('xData must be array');
@@ -37,3 +37,5 @@ export function inputValidator({ yData, xData, maxHeight, maxWidth, pointer }) {
         throw new Error('pointer must be a single character string');
     }
 }
+
+module.exports = { inputValidator };

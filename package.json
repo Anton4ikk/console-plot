@@ -1,15 +1,16 @@
 {
   "name": "console-plot",
-  "version": "1.0.0",
-  "description": "Dwaw graph based on X/Y data in console",
-  "main": "index.js",
+  "version": "1.0.1",
+  "description": "Draw graph based on X/Y data in console",
   "type": "module",
-  "bin": {
-    "console-plot": "./index.js"
+  "main": "index.cjs",
+  "exports": {
+    "import": "./index.js",
+    "require": "./index.cjs"
   },
+  "types": "index.d.ts",
   "scripts": {
-    "test:plot": "node test/plotGraph.test.js",
-    "test:validation": "node test/inputValidation.test.js"
+    "test": "cd test && npm install && npm test"
   },
   "keywords": ["console", "plot", "graph", "visualization", "terminal", "chart"],
   "author": "Anton Bazhenov",

@@ -1,10 +1,19 @@
 # console-plot
 
+[![npm version](https://img.shields.io/npm/v/console-plot.svg)](https://www.npmjs.com/package/console-plot)
+[![npm downloads](https://img.shields.io/npm/dm/console-plot.svg)](https://www.npmjs.com/package/console-plot)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+
 A simple tool for drawing basic graphs in the terminal using X and Y data.
+
+---
 
 ## Links
 
-[Github](https://www.npmjs.com/package/console-plot) | [Npm-package](https://github.com/Anton4ikk/console-plot)
+[npm package](https://www.npmjs.com/package/console-plot) | [GitHub](https://github.com/Anton4ikk/console-plot)
+
+---
 
 ## Installation
 
@@ -12,11 +21,13 @@ A simple tool for drawing basic graphs in the terminal using X and Y data.
 npm install console-plot
 ```
 
-## Usage examples
+---
 
-### 1. Default plot using X and Y data
+## Usage Examples
 
-```js
+### Basic Plot
+
+```javascript
 import { plotGraph } from 'console-plot';
 
 plotGraph({
@@ -25,7 +36,7 @@ plotGraph({
 });
 ```
 
-```bash
+```
  10.70                    *
  10.38                  *
  10.06
@@ -60,9 +71,9 @@ plotGraph({
         A B C D E F G H I J
 ```
 
-### 2. Optional parameters
+### Advanced Configuration
 
-```js
+```javascript
 import { plotGraph } from 'console-plot';
 
 plotGraph({
@@ -73,7 +84,7 @@ plotGraph({
 });
 ```
 
-```bash
+```
 100.00                                                 @      @
  94.79
  89.58
@@ -97,3 +108,82 @@ plotGraph({
 
         Ja..ry Fe..ry March April May June July August Se..er Oc..er
 ```
+
+---
+
+## TypeScript Support
+
+This package includes TypeScript definitions for full type safety and IntelliSense support.
+
+```typescript
+import { plotGraph, PlotGraphParams } from 'console-plot';
+
+const params: PlotGraphParams = {
+  yData: [1, 2, 3, 4, 5],
+  xData: ['A', 'B', 'C', 'D', 'E'],
+  maxHeight: 15,
+  maxWidth: 20,
+  pointer: '@',
+};
+
+plotGraph(params);
+```
+
+---
+
+## CommonJS Support
+
+This package also supports CommonJS (require) syntax:
+
+```javascript
+const { plotGraph } = require('console-plot');
+
+plotGraph({
+  yData: [1, 2, 3, 4, 5],
+  xData: ['A', 'B', 'C', 'D', 'E'],
+});
+```
+
+---
+
+## Development & Contributing
+
+To contribute to this project or run tests locally:
+
+#### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/Anton4ikk/console-plot.git
+cd console-plot
+
+# Install dependencies
+npm install
+
+# Setup test environment
+cd test && npm install
+```
+
+#### Running Tests
+
+```bash
+# Run all tests (unit + integration)
+npm test
+```
+
+#### Test Structure
+
+```
+test/
+├── config/           # Test configuration files
+├── unit/            # Unit tests (core functionality)
+├── integration/     # Integration tests (ESM/CJS, installed package)
+└── README.md        # Detailed test documentation
+```
+
+**Available test types:**
+- **Unit tests**: Core functionality and validation
+- **Integration tests**: ESM/CommonJS compatibility and npm package tests
+- **TypeScript tests**: Type safety and IntelliSense verification
+
+**Note:** `node_modules` folders are excluded from version control. Dependencies are installed automatically when running tests.
