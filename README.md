@@ -157,33 +157,54 @@ To contribute to this project or run tests locally:
 git clone https://github.com/Anton4ikk/console-plot.git
 cd console-plot
 
-# Install dependencies
+# Install dependencies (if needed for development)
 npm install
 
 # Setup test environment
-cd test && npm install
+cd test/installed && npm install
 ```
 
 #### Running Tests
 
 ```bash
-# Run all tests (unit + integration)
-npm test
+# Run tests for specific formats:
+npm run test:esm        # ESM format tests only
+npm run test:cjs        # CommonJS format tests only
+npm run test:ts         # TypeScript format tests only
+
+# Or run tests for specific installed package formats:
+npm run test:installed:esm  # ESM tests with installed package
+npm run test:installed:cjs  # CommonJS tests with installed package
+npm run test:installed:ts   # TypeScript tests with installed package
 ```
 
 #### Test Structure
 
 ```
 test/
-├── config/           # Test configuration files
-├── unit/            # Unit tests (core functionality)
-├── integration/     # Integration tests (ESM/CJS, installed package)
-└── README.md        # Detailed test documentation
+├── esm/                          # ESM format tests (import syntax)
+│   ├── plotGraph.test.js         # Basic functionality tests
+│   ├── inputValidation.test.js   # Input validation tests
+│   └── parameterSafety.test.js   # Parameter safety tests
+├── cjs/                          # CommonJS format tests (require syntax)
+│   ├── plotGraph.test.cjs        # Basic functionality tests
+│   ├── inputValidation.test.cjs  # Input validation tests
+│   └── parameterSafety.test.cjs  # Parameter safety tests
+├── ts/                           # TypeScript format tests (with typing)
+│   ├── plotGraph.test.ts         # Basic functionality tests
+│   ├── inputValidation.test.ts   # Input validation tests
+│   └── typescript.test.ts        # TypeScript type safety tests
+└── installed/                    # Tests using installed npm package
+    ├── esm/                      # ESM tests with installed package
+    ├── cjs/                      # CommonJS tests with installed package
+    └── ts/                       # TypeScript tests with installed package
 ```
 
-**Available test types:**
-- **Unit tests**: Core functionality and validation
-- **Integration tests**: ESM/CommonJS compatibility and npm package tests
-- **TypeScript tests**: Type safety and IntelliSense verification
+**Test Categories:**
+- **Basic functionality**: Core plotting features and options
+- **Input validation**: Error handling and parameter validation
+- **Parameter safety**: Type checking and parameter validation
+- **Module compatibility**: ESM, CommonJS, and TypeScript support
+- **Package integration**: Tests using the actual installed npm package
 
-**Note:** `node_modules` folders are excluded from version control. Dependencies are installed automatically when running tests.
+**Note:** Each test file uses simple function calls without test frameworks, making them easy to run directly with Node.js.
