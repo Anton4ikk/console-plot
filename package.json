@@ -1,6 +1,6 @@
 {
   "name": "console-plot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Draw graph based on X/Y data in console",
   "type": "module",
   "main": "index.cjs",
@@ -10,7 +10,12 @@
   },
   "types": "index.d.ts",
   "scripts": {
-    "test": "cd test && npm install && npm test"
+    "test:esm": "node test/esm/plotGraph.test.js && node test/esm/inputValidation.test.js && node test/esm/parameterSafety.test.js",
+    "test:cjs": "node test/cjs/plotGraph.test.cjs && node test/cjs/inputValidation.test.cjs && node test/cjs/parameterSafety.test.cjs",
+    "test:ts": "cd test && npm install && npx ts-node ts/plotGraph.test.ts && npx ts-node ts/inputValidation.test.ts && npx ts-node ts/typescript.test.ts",
+    "test:installed:esm": "cd test/installed && npm install && node esm/plotGraph.test.js && node esm/inputValidation.test.js",
+    "test:installed:cjs": "cd test/installed && npm install && node cjs/plotGraph.test.cjs && node cjs/inputValidation.test.cjs",
+    "test:installed:ts": "cd test/installed && npm install && cd .. && npm install && npx ts-node ts/plotGraph.test.ts && npx ts-node ts/inputValidation.test.ts"
   },
   "keywords": ["console", "plot", "graph", "visualization", "terminal", "chart"],
   "author": "Anton Bazhenov",

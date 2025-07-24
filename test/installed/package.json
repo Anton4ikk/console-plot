@@ -1,0 +1,10 @@
+{
+  "name": "console-plot-tests",
+  "version": "1.0.0",
+  "description": "Tests for console-plot package",
+  "type": "module",
+  "private": true,
+  "dependencies": {
+    "console-plot": "^1.0.1"
+  }
+}
