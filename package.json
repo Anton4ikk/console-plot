@@ -1,6 +1,6 @@
 {
   "name": "console-plot",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Draw graph based on X/Y data in console",
   "type": "module",
   "main": "index.cjs",
