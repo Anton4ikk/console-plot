@@ -5,27 +5,29 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 
-A simple tool for drawing basic graphs in the terminal using X and Y data.
+> A lightweight library for drawing console-based graphs from X/Y data with intelligent downsampling and TypeScript support.
 
----
+## 🔗 Links
 
-## Links
+- [📦 npm package](https://www.npmjs.com/package/console-plot)
+- [🐙 GitHub repository](https://github.com/Anton4ikk/console-plot)
+- [🐛 Issues & Feature Requests](https://github.com/Anton4ikk/console-plot/issues)
 
-[npm package](https://www.npmjs.com/package/console-plot) | [GitHub](https://github.com/Anton4ikk/console-plot)
+## 🚀 Features
 
----
+- **Smart Data Handling**: Intelligent downsampling for large datasets
+- **Multiple Formats**: ESM, CommonJS, and TypeScript support
+- **Zero Dependencies**: Lightweight with no external dependencies
+- **Customizable**: Adjustable height, width, and pointer characters
+- **Type Safe**: Full TypeScript definitions included
 
-## Installation
+## 📦 Installation
 
 ```bash
 npm install console-plot
 ```
 
----
-
-## Usage Examples
-
-### Basic Plot
+## 🎯 Quick Start
 
 ```javascript
 import { plotGraph } from 'console-plot';
@@ -36,6 +38,7 @@ plotGraph({
 });
 ```
 
+**Output:**
 ```
  10.70                    *
  10.38                  *
@@ -71,140 +74,114 @@ plotGraph({
         A B C D E F G H I J
 ```
 
-### Advanced Configuration
+## 📊 API Reference
+
+### `plotGraph(params)`
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `yData` | `number[]` | **required** | Y-axis values (numeric data points) |
+| `xData` | `(string\|number)[]` | **required** | X-axis labels |
+| `maxHeight` | `number` | `30` | Maximum graph height in lines |
+| `maxWidth` | `number` | `30` | Maximum graph width (smart downsampling) |
+| `pointer` | `string` | `'*'` | Character used for data points |
+
+### Smart MaxWidth Handling
+
+When your data exceeds `maxWidth`, console-plot intelligently downsamples by:
+- **Averaging Y values** within each bucket for better representation
+- **Preserving data distribution** across the entire dataset
+- **Maintaining visual accuracy** rather than just truncating
 
 ```javascript
-import { plotGraph } from 'console-plot';
+// Large dataset (100 points) → Downsampled to 10 points
+const largeData = Array.from({length: 100}, (_, i) => Math.sin(i * 0.1) * 10);
+const labels = Array.from({length: 100}, (_, i) => `P${i}`);
 
 plotGraph({
-  yData: [1, 2, 3, 50, 51, 52, 53, 75, 99, 100],
-  xData: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
-  maxHeight: 20,
-  pointer: '@',
+  yData: largeData,
+  xData: labels,
+  maxWidth: 10,  // Intelligently reduces 100 points to 10
+  pointer: '●'
 });
 ```
 
-```
-100.00                                                 @      @
- 94.79
- 89.58
- 84.37
- 79.16
- 73.95                                          @
- 68.74
- 63.53
- 58.32
- 53.11                            @   @    @
- 47.89                      @
- 42.68
- 37.47
- 32.26
- 27.05
- 21.84
- 16.63
- 11.42
-  6.21
-  1.00  @      @      @
+## 🔧 Usage Examples
 
-        Ja..ry Fe..ry March April May June July August Se..er Oc..er
-```
-
----
-
-## TypeScript Support
-
-This package includes TypeScript definitions for full type safety and IntelliSense support.
+### TypeScript Support
 
 ```typescript
 import { plotGraph, PlotGraphParams } from 'console-plot';
 
-const params: PlotGraphParams = {
+const config: PlotGraphParams = {
   yData: [1, 2, 3, 4, 5],
-  xData: ['A', 'B', 'C', 'D', 'E'],
+  xData: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5'],
   maxHeight: 15,
   maxWidth: 20,
-  pointer: '@',
+  pointer: '■',
 };
 
-plotGraph(params);
+plotGraph(config);
 ```
 
----
-
-## CommonJS Support
-
-This package also supports CommonJS (require) syntax:
+### CommonJS Support
 
 ```javascript
 const { plotGraph } = require('console-plot');
 
 plotGraph({
-  yData: [1, 2, 3, 4, 5],
-  xData: ['A', 'B', 'C', 'D', 'E'],
+  yData: [10, 25, 30, 15, 40],
+  xData: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+  maxHeight: 12,
+  pointer: '@',
 });
 ```
 
----
+### Custom Styling
 
-## Development & Contributing
+```javascript
+plotGraph({
+  yData: [1, 50, 25, 75, 100],
+  xData: ['Start', 'Low', 'Mid', 'High', 'Peak'],
+  maxHeight: 20,
+  maxWidth: 15,
+  pointer: '█',
+});
+```
 
-To contribute to this project or run tests locally:
+## 🧪 Development
 
-#### Setup
+### Running Tests
 
 ```bash
-# Clone the repository
-git clone https://github.com/Anton4ikk/console-plot.git
-cd console-plot
+# Test different module formats
+npm run test:esm        # ES Modules
+npm run test:cjs        # CommonJS  
+npm run test:ts         # TypeScript
 
-# Install dependencies (if needed for development)
-npm install
-
-# Setup test environment
-cd test/installed && npm install
+# Test with installed package
+npm run test:installed:esm
+npm run test:installed:cjs  
+npm run test:installed:ts
 ```
 
-#### Running Tests
+### Test Categories
 
-```bash
-# Run tests for specific formats:
-npm run test:esm        # ESM format tests only
-npm run test:cjs        # CommonJS format tests only
-npm run test:ts         # TypeScript format tests only
+- **Basic Functionality**: Core plotting and configuration
+- **Input Validation**: Error handling and parameter checking
+- **Parameter Safety**: Type validation and edge cases
+- **MaxWidth Downsampling**: Smart data reduction algorithms
+- **Module Compatibility**: Cross-format testing
 
-# Or run tests for specific installed package formats:
-npm run test:installed:esm  # ESM tests with installed package
-npm run test:installed:cjs  # CommonJS tests with installed package
-npm run test:installed:ts   # TypeScript tests with installed package
-```
+## 🤝 Contributing
 
-#### Test Structure
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Run tests: `npm run test:esm && npm run test:cjs && npm run test:ts`
+4. Commit changes: `git commit -m 'Add feature'`
+5. Push to branch: `git push origin feature-name`
+6. Submit a pull request
 
-```
-test/
-├── esm/                          # ESM format tests (import syntax)
-│   ├── plotGraph.test.js         # Basic functionality tests
-│   ├── inputValidation.test.js   # Input validation tests
-│   └── parameterSafety.test.js   # Parameter safety tests
-├── cjs/                          # CommonJS format tests (require syntax)
-│   ├── plotGraph.test.cjs        # Basic functionality tests
-│   ├── inputValidation.test.cjs  # Input validation tests
-│   └── parameterSafety.test.cjs  # Parameter safety tests
-├── ts/                           # TypeScript format tests (with typing)
-│   ├── plotGraph.test.ts         # Basic functionality tests
-│   ├── inputValidation.test.ts   # Input validation tests
-│   └── typescript.test.ts        # TypeScript type safety tests
-└── installed/                    # Tests using installed npm package
-    ├── esm/                      # ESM tests with installed package
-    ├── cjs/                      # CommonJS tests with installed package
-    └── ts/                       # TypeScript tests with installed package
-```
+## 📄 License
 
-**Test Categories:**
-- **Basic functionality**: Core plotting features and options
-- **Input validation**: Error handling and parameter validation
-- **Parameter safety**: Type checking and parameter validation
-- **Module compatibility**: ESM, CommonJS, and TypeScript support
-- **Package integration**: Tests using the actual installed npm package
-
-**Note:** Each test file uses simple function calls without test frameworks, making them easy to run directly with Node.js.
+MIT © [Anton Bazhenov](https://github.com/Anton4ikk)

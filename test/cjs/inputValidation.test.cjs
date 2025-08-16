@@ -1,6 +1,6 @@
 const { plotGraph } = require('../../index.cjs');
 
-console.log('=== plotGraph Input Validation Test 1: xData longer than yData ===');
+console.log('=== CJS Test: Input Validation - Array Length Mismatch (xData > yData) ===');
 try {
   const yData = [1, 3, 2];
   const xData = ['A', 'B', 'C', 'D', 'E'];
@@ -10,7 +10,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 2: yData longer than xData ===');
+console.log('\n=== CJS Test: Input Validation - Array Length Mismatch (yData > xData) ===');
 try {
   const yData = [1, 3, 2, 5, 4, 6];
   const xData = ['A', 'B', 'C', 'D', 'E'];
@@ -20,7 +20,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 3: xData not an array ===');
+console.log('\n=== CJS Test: Input Validation - Invalid xData Type (Number) ===');
 try {
   const yData = [1, 3, 2, 5, 4, 6];
   const xData = 123.34;
@@ -30,7 +30,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 4: yData not an array ===');
+console.log('\n=== CJS Test: Input Validation - Invalid yData Type (Number) ===');
 try {
   const yData = 123.34;
   const xData = ['A', 'B', 'C', 'D', 'E'];
@@ -40,7 +40,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 5: maxHeight not an integer ===');
+console.log('\n=== CJS Test: Input Validation - Invalid maxHeight Type (Float) ===');
 try {
   const yData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const xData = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
@@ -50,7 +50,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 6: pointer not a string ===');
+console.log('\n=== CJS Test: Input Validation - Invalid Pointer Type (Number) ===');
 try {
   const yData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const xData = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
@@ -60,7 +60,7 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Test 7: Valid parameters ===');
+console.log('\n=== CJS Test: Input Validation - Valid Parameters (All Options) ===');
 try {
   const yData = [1, 2, 3, 4, 5];
   const xData = ['A', 'B', 'C', 'D', 'E'];
@@ -70,4 +70,4 @@ try {
   console.log('ERROR: Should not have thrown an error:', error.message);
 }
 
-console.log('\n=== plotGraph Input Validation Tests Completed ===');
+console.log('\n=== CJS Input Validation Tests Completed ===');

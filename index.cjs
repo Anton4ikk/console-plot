@@ -3,6 +3,43 @@
 const { inputValidator } = require('./inputValidator.cjs');
 
 /**
+ * Downsamples data arrays to fit within maxWidth while preserving data characteristics
+ * @param {Array<number>} yData - Y-axis values
+ * @param {Array<string|number>} xData - X-axis values
+ * @param {number} maxWidth - Target width
+ * @returns {Object} Object with downsampled yData and xData arrays
+ */
+function downsampleData(yData, xData, maxWidth) {
+    if (yData.length <= maxWidth) {
+        return { yData, xData };
+    }
+
+    const step = yData.length / maxWidth;
+    const downsampledY = [];
+    const downsampledX = [];
+
+    for (let i = 0; i < maxWidth; i++) {
+        const start = Math.floor(i * step);
+        const end = Math.floor((i + 1) * step);
+        
+        // For Y values, use average of the range for better representation
+        let ySum = 0;
+        let count = 0;
+        for (let j = start; j < end && j < yData.length; j++) {
+            ySum += yData[j];
+            count++;
+        }
+        const avgY = count > 0 ? ySum / count : yData[start];
+        downsampledY.push(avgY);
+
+        // For X values, use the first value in the range (could also use middle)
+        downsampledX.push(xData[start]);
+    }
+
+    return { yData: downsampledY, xData: downsampledX };
+}
+
+/**
  * Draws a graph in the console based on input data
  * @param {Object} params - graph parameters
  * @param {Array<number>} params.yData - values along the Y-axis
@@ -20,9 +57,11 @@ function plotGraph({
 }) {
     inputValidator({ yData, xData, maxHeight, maxWidth, pointer });
 
+    // Downsample data if it exceeds maxWidth
     if (xData.length > maxWidth) {
-        yData = yData.slice(0, maxWidth);
-        xData = xData.slice(0, maxWidth);
+        const downsampledData = downsampleData(yData, xData, maxWidth);
+        yData = downsampledData.yData;
+        xData = downsampledData.xData;
     }
 
     const maxY = Math.max(...yData);
