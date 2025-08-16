@@ -1,29 +1,22 @@
 import { plotGraph } from 'console-plot';
 
-console.log('=== plotGraph Basic Functionality Test 1: Basic Graph ===');
+console.log('=== ESM Installation Test: Basic Smoke Test ===');
 plotGraph({
-  yData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-  xData: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+  yData: [1, 2, 3, 4, 5],
+  xData: ['A', 'B', 'C', 'D', 'E'],
+  maxHeight: 5,
+  pointer: '*'
 });
 
-console.log('\n=== plotGraph Basic Functionality Test 2: Different Scaling ===');
+console.log('\n=== ESM Installation Test: MaxWidth Downsampling ===');
+const largeData = Array.from({length: 20}, (_, i) => Math.sin(i * 0.3) * 5 + 10);
+const largeLabels = Array.from({length: 20}, (_, i) => `D${i+1}`);
 plotGraph({
-  yData: [1, 2, 3, 50, 51, 52, 53, 75, 99, 100],
-  xData: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
+  yData: largeData,
+  xData: largeLabels,
+  maxWidth: 5,
+  maxHeight: 6,
+  pointer: '●'
 });
 
-console.log('\n=== plotGraph Basic Functionality Test 3: Float Values ===');
-plotGraph({
-  yData: [1.4, 2.4, 2.8, 8.1, 8.4, 8.6, 8.7, 8.9, 10.5, 10.7],
-  xData: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
-});
-
-console.log('\n=== plotGraph Basic Functionality Test 4: Custom Options ===');
-plotGraph({
-  yData: [1, 2, 3, 50, 51, 52, 53, 75, 99, 100],
-  xData: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October'],
-  maxHeight: 20,
-  pointer: '@'
-});
-
-console.log('\n=== plotGraph Basic Functionality Tests Completed ===');
+console.log('\n=== ESM Installation Tests Completed ===');
