@@ -2,6 +2,19 @@
 
 const { inputValidator } = require('./inputValidator.cjs');
 
+// ANSI color codes
+const COLORS = {
+    black: '\x1b[30m',
+    red: '\x1b[31m',
+    green: '\x1b[32m',
+    yellow: '\x1b[33m',
+    blue: '\x1b[34m',
+    magenta: '\x1b[35m',
+    cyan: '\x1b[36m',
+    white: '\x1b[37m',
+    reset: '\x1b[0m'
+};
+
 /**
  * Downsamples data arrays to fit within maxWidth while preserving data characteristics
  * @param {Array<number>} yData - Y-axis values
@@ -47,6 +60,7 @@ function downsampleData(yData, xData, maxWidth) {
  * @param {Number} params.maxHeight - maximum height of the graph
  * @param {Number} params.maxWidth - maximum width of the graph
  * @param {String} params.pointer - symbol to represent the data points
+ * @param {String} params.color - color for the graph points (optional)
  */
 function plotGraph({
     yData,
@@ -54,8 +68,9 @@ function plotGraph({
     maxHeight = 30,
     maxWidth = 30,
     pointer = '*',
+    color = null,
 }) {
-    inputValidator({ yData, xData, maxHeight, maxWidth, pointer });
+    inputValidator({ yData, xData, maxHeight, maxWidth, pointer, color });
 
     // Downsample data if it exceeds maxWidth
     if (xData.length > maxWidth) {
@@ -69,6 +84,10 @@ function plotGraph({
     const scaledY = yData.map(
         y => Math.round(((y - minY) / (maxY - minY)) * (maxHeight - 1))
     );
+
+    // Apply color if specified
+    const colorCode = color && COLORS[color] ? COLORS[color] : '';
+    const resetCode = color && COLORS[color] ? COLORS.reset : '';
 
     let labelLine = ' '.repeat(8);
     let labelSizes = [];
@@ -95,7 +114,7 @@ function plotGraph({
         let line = currentValue + '  ';
         for (let col = 0; col < yData.length; col++) {
             line += (scaledY[col] === row) ?
-                `${pointer}${' '.repeat(labelSizes[col])}` : ` ${' '.repeat(labelSizes[col])}`;
+                `${colorCode}${pointer}${resetCode}${' '.repeat(labelSizes[col])}` : ` ${' '.repeat(labelSizes[col])}`;
         }
         console.log(line);
     }

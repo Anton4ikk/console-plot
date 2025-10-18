@@ -1,3 +1,5 @@
+const VALID_COLORS = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white'];
+
 /**
  * Validates input data
  * @param {Object} params - graph parameters
@@ -6,8 +8,9 @@
  * @param {Number} params.maxHeight - maximum height of the graph
  * @param {Number} params.maxWidth - maximum width of the graph
  * @param {String} params.pointer - symbol to represent the data points
+ * @param {String} params.color - color for the graph points (optional)
  */
-function inputValidator({ yData, xData, maxHeight, maxWidth, pointer }) {
+function inputValidator({ yData, xData, maxHeight, maxWidth, pointer, color }) {
 
     if (!Array.isArray(xData)) {
         throw new Error('xData must be array');
@@ -35,6 +38,10 @@ function inputValidator({ yData, xData, maxHeight, maxWidth, pointer }) {
 
     if (typeof pointer !== 'string' || pointer.length !== 1) {
         throw new Error('pointer must be a single character string');
+    }
+
+    if (color !== null && color !== undefined && !VALID_COLORS.includes(color)) {
+        throw new Error(`color must be one of: ${VALID_COLORS.join(', ')}, or null/undefined`);
     }
 }
 
