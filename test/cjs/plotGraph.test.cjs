@@ -71,4 +71,13 @@ plotGraph({
   pointer: '#'
 });
 
+console.log('\n=== CJS Test: Color Support - Green ===');
+plotGraph({ yData: yData1, xData: xData1, color: 'green', maxHeight: 10 });
+
+console.log('\n=== CJS Test: Color Support - Red with Custom Pointer ===');
+plotGraph({ yData: yData3, xData: xData3, color: 'red', pointer: '●', maxHeight: 10 });
+
+console.log('\n=== CJS Test: Color Support - Blue ===');
+plotGraph({ yData: [5, 10, 15, 20, 25], xData: ['A', 'B', 'C', 'D', 'E'], color: 'blue', maxHeight: 8 });
+
 console.log('\n=== CJS plotGraph Tests Completed ===');

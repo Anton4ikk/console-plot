@@ -156,12 +156,12 @@ plotGraph({
 ```bash
 # Test different module formats
 npm run test:esm        # ES Modules
-npm run test:cjs        # CommonJS  
+npm run test:cjs        # CommonJS
 npm run test:ts         # TypeScript
 
 # Test with installed package
 npm run test:installed:esm
-npm run test:installed:cjs  
+npm run test:installed:cjs
 npm run test:installed:ts
 ```
 
@@ -172,6 +172,53 @@ npm run test:installed:ts
 - **Parameter Safety**: Type validation and edge cases
 - **MaxWidth Downsampling**: Smart data reduction algorithms
 - **Module Compatibility**: Cross-format testing
+
+## 🗺️ Roadmap
+
+Future enhancements planned for console-plot:
+
+### 🎨 Visual Improvements
+
+- **Line Connections**: Connect data points with lines using ASCII characters (`│`, `─`, `/`, `\`) for better trend visualization
+  ```javascript
+  plotGraph({ yData, xData, showLines: true })
+  ```
+
+- **Terminal Colors**: Add ANSI color support for enhanced visual appeal
+  ```javascript
+  plotGraph({ yData, xData, color: 'green' })
+  ```
+
+### 📈 Advanced Features
+
+- **Multiple Data Series**: Plot multiple datasets on the same graph with different markers
+  ```javascript
+  plotGraph({
+    series: [
+      { yData: [1, 2, 3], label: 'Series 1', pointer: '*' },
+      { yData: [2, 4, 1], label: 'Series 2', pointer: 'o' }
+    ],
+    xData: ['A', 'B', 'C']
+  })
+  ```
+
+- **String Output API**: Return graph as string instead of printing to console
+  ```javascript
+  const graph = plotGraph({ yData, xData, returnString: true })
+  // Use for logging, file output, or web APIs
+  ```
+
+### 🔬 Algorithm Enhancements
+
+- **Advanced Downsampling Modes**: Improve data reduction quality
+  - `'average'` - Current averaging method (default)
+  - `'min-max'` - Preserve extremes for spike detection
+  - `'lttb'` - Largest-Triangle-Three-Buckets algorithm for better visual shape preservation
+  ```javascript
+  plotGraph({ yData, xData, downsampleMode: 'lttb' })
+  ```
+
+**Want to contribute?** Check out [issues](https://github.com/Anton4ikk/console-plot/issues) or suggest new features!
 
 ## 🤝 Contributing
 

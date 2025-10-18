@@ -90,4 +90,32 @@ const maxWidthParams3: PlotGraphParams = {
 };
 plotGraph(maxWidthParams3);
 
+console.log('\n=== TS Test: Color Support - Green ===');
+const colorParams1: PlotGraphParams = {
+  yData: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  xData: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+  color: 'green',
+  maxHeight: 10
+};
+plotGraph(colorParams1);
+
+console.log('\n=== TS Test: Color Support - Red with Custom Pointer ===');
+const colorParams2: PlotGraphParams = {
+  yData: [1.4, 2.4, 2.8, 8.1, 8.4, 8.6, 8.7, 8.9, 10.5, 10.7],
+  xData: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'],
+  color: 'red',
+  pointer: '●',
+  maxHeight: 10
+};
+plotGraph(colorParams2);
+
+console.log('\n=== TS Test: Color Support - Blue ===');
+const colorParams3: PlotGraphParams = {
+  yData: [5, 10, 15, 20, 25],
+  xData: ['A', 'B', 'C', 'D', 'E'],
+  color: 'blue',
+  maxHeight: 8
+};
+plotGraph(colorParams3);
+
 console.log('\n=== TS plotGraph Tests Completed ===');

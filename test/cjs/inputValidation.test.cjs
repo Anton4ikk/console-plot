@@ -60,6 +60,36 @@ try {
   console.log('✓ Expected error:', error.message);
 }
 
+console.log('\n=== CJS Test: Input Validation - Invalid Color (Unknown) ===');
+try {
+  const yData = [1, 2, 3, 4, 5];
+  const xData = ['A', 'B', 'C', 'D', 'E'];
+  plotGraph({ yData, xData, color: 'purple' });
+  console.log('ERROR: Should have thrown an error!');
+} catch (error) {
+  console.log('✓ Expected error:', error.message);
+}
+
+console.log('\n=== CJS Test: Input Validation - Invalid Color Type (Number) ===');
+try {
+  const yData = [1, 2, 3, 4, 5];
+  const xData = ['A', 'B', 'C', 'D', 'E'];
+  plotGraph({ yData, xData, color: 123 });
+  console.log('ERROR: Should have thrown an error!');
+} catch (error) {
+  console.log('✓ Expected error:', error.message);
+}
+
+console.log('\n=== CJS Test: Input Validation - Valid Color (Green) ===');
+try {
+  const yData = [1, 2, 3, 4, 5];
+  const xData = ['A', 'B', 'C', 'D', 'E'];
+  plotGraph({ yData, xData, color: 'green', maxHeight: 5 });
+  console.log('✓ Valid color parameter worked correctly');
+} catch (error) {
+  console.log('ERROR: Should not have thrown an error:', error.message);
+}
+
 console.log('\n=== CJS Test: Input Validation - Valid Parameters (All Options) ===');
 try {
   const yData = [1, 2, 3, 4, 5];

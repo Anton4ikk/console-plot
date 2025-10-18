@@ -67,6 +67,46 @@ try {
   console.log('✓ Expected error:', (error as Error).message);
 }
 
+console.log('\n=== TS Test: Input Validation - Invalid Color (Unknown) ===');
+try {
+  const params: PlotGraphParams = {
+    yData: [1, 2, 3, 4, 5],
+    xData: ['A', 'B', 'C', 'D', 'E'],
+    color: 'purple' as any,
+  };
+  plotGraph(params);
+  console.log('ERROR: Should have thrown an error!');
+} catch (error) {
+  console.log('✓ Expected error:', (error as Error).message);
+}
+
+console.log('\n=== TS Test: Input Validation - Invalid Color Type (Number) ===');
+try {
+  const params: PlotGraphParams = {
+    yData: [1, 2, 3, 4, 5],
+    xData: ['A', 'B', 'C', 'D', 'E'],
+    color: 123 as any,
+  };
+  plotGraph(params);
+  console.log('ERROR: Should have thrown an error!');
+} catch (error) {
+  console.log('✓ Expected error:', (error as Error).message);
+}
+
+console.log('\n=== TS Test: Input Validation - Valid Color (Green) ===');
+try {
+  const params: PlotGraphParams = {
+    yData: [1, 2, 3, 4, 5],
+    xData: ['A', 'B', 'C', 'D', 'E'],
+    color: 'green',
+    maxHeight: 5,
+  };
+  plotGraph(params);
+  console.log('✓ Valid color parameter worked correctly');
+} catch (error) {
+  console.log('ERROR: Should not have thrown an error:', (error as Error).message);
+}
+
 console.log('\n=== TS Test: Input Validation - Valid Parameters with TypeScript Types ===');
 try {
   const params: PlotGraphParams = {
